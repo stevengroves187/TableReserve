@@ -68,14 +68,15 @@
      .then(formatReservationTime);
  }
  
- export async function postReservation(data) {
-   const url = new URL(`${API_BASE_URL}/reservations`);
-   return await fetchJson(url, {method:'POST',headers,body:JSON.stringify({data}) }, [])
-   .then(formatReservationDate)
-   .then(formatReservationTime);
+ export async function postReservation(reservation, signal) {
+  const url = new URL(`${API_BASE_URL}/reservations`);
+
+  const body = JSON.stringify({ data: reservation });
+
+  return await fetchJson(url, { headers, signal, method: "POST", body }, []);
  }
  
- export async function cancelReservation(reservationId) {
+ export async function cancelReservation(reservationId, signal) {
    const url = new URL(`${API_BASE_URL}/reservations/${reservationId}/status`);
    return await fetchJson(url, {method:'PUT',headers,body:`{data: { status: "cancelled" } }`}, [])
    .then(formatReservationDate)
