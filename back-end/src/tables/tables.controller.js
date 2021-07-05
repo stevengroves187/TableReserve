@@ -30,8 +30,10 @@ async function validateTable(req, res, next) {
       status: 400,
       message: "table_name must be at least 2 characters.",
     });
+  
   if (typeof data.capacity !== "number")
     return next({ status: 400, message: "'capacity' must be a number." });
+    
   if (data.capacity < 1)
     return next({
       status: 400,

@@ -76,14 +76,32 @@
   return await fetchJson(url, { headers, signal, method: "POST", body }, []);
  }
  
- export async function cancelReservation(reservationId, signal) {
-   const url = new URL(`${API_BASE_URL}/reservations/${reservationId}/status`);
-   return await fetchJson(url, {method:'PUT',headers,body:`{data: { status: "cancelled" } }`}, [])
-   .then(formatReservationDate)
-   .then(formatReservationTime);
- }
+ export async function readReservation(reservation_id, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation_id}`;
 
- export async function postTable(data) {
+  return await fetchJson(url, { headers, signal}, []);
+}
+
+ export async function editReservation(reservation, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation.reservation_id}`;
+
+  const body = JSON.stringify({ data: reservation });
+
+  return await fetchJson(url, { headers, signal, method: "PUT", body }, []);
+}
+
+ export async function updateReservationStatus(reservation_id, status, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation_id}/status`;
+
+  const body = JSON.stringify({ data: { status: status }});
+
+  return await fetchJson(url, { headers, signal, method: "PUT", body }, []);
+}
+
+ export async function postTable(table, signal) {
   const url = new URL(`${API_BASE_URL}/tables`);
-  return await fetchJson(url, {method:'POST',headers,body:JSON.stringify({data}) }, []);
+
+  const body = JSON.stringify({ data: table });
+
+  return await fetchJson(url, {headers,signal,method:'POST',body}, []);
  }

@@ -2,7 +2,7 @@ import React, { useEffect, useState} from "react";
 import { useHistory } from 'react-router-dom';
 import { listReservations } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
-import ReservationList from "../layout/ReservationList";
+import ReservationList from "../layout//Reservations/ReservationList";
 import {next, previous, today} from "../utils/date-time";
 
 /**
@@ -58,7 +58,7 @@ function Dashboard({date}) {
         </button>
       </div>
       <ErrorAlert error={reservationsError} />
-      <ReservationList reservations={reservations}/>
+      <ReservationList reservations={reservations} loadDashboard={loadDashboard}/>
     </main>
   );
 }

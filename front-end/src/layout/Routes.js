@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import { Redirect, Route, Switch} from "react-router-dom";
 import Dashboard from "../dashboard/Dashboard";
-import ReservationForm from "./ReservationForm";
+import ReservationForm from "./Reservations/ReservationForm";
+import SeatReservation from "./Reservations/SeatReservation";
+import Search from "./Search";
 import TableForm from "./TableForm";
 import NotFound from "./NotFound";
 import useQuery from "../utils/useQuery";
@@ -32,13 +34,22 @@ function Routes() {
         <Redirect to={"/dashboard"} />
       </Route>
       <Route exact={true} path="/reservations/new">
-        <ReservationForm />
+        <ReservationForm edit={false}/>
+      </Route>
+      <Route path="/reservations/:reservation_id/seat">
+        <SeatReservation />
+      </Route>
+      <Route path="/reservations/:reservation_id/edit">
+        <ReservationForm edit={true} />
       </Route>
       <Route exact={true} path="/tables/new">
         <TableForm />
       </Route>
       <Route path="/dashboard">
         <Dashboard date={date}/>
+      </Route>
+      <Route path="/search">
+        <Search />
       </Route>
       <Route>
         <NotFound />
