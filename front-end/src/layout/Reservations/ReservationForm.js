@@ -6,7 +6,7 @@ import {
   postReservation,
   editReservation,
 } from "../../utils/api";
-import { asDateString } from "../../utils/date-time";
+import { asDateString , formatAsTime} from "../../utils/date-time";
 
 function ReservationForm({ edit }) {
   const initialReservationState = {
@@ -69,7 +69,7 @@ function ReservationForm({ edit }) {
           last_name,
           mobile_number,
           reservation_date: asDateString(date),
-          reservation_time,
+          reservation_time: formatAsTime(reservation_time),
           people,
           status,
         });

@@ -104,7 +104,7 @@ async function validReservation(req, res, next) {
       break;
     }
   }
-
+  data.status = "booked";
   res.locals.reservation = data;
   next();
 }

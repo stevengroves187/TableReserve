@@ -6,7 +6,7 @@ import ReservationList from "./Reservations/ReservationList";
 function Search() {
   const [mobileNumber, setMobileNumber] = useState("");
   const [reservations, setReservations] = useState([]);
-  const [searched, setSearched] = useState(false);
+  const [searched, setSearched] = useState("");
   const [error, setError] = useState(null);
 
   function handleChange(event) {
@@ -22,7 +22,7 @@ function Search() {
 
     listReservations({ mobile_number: mobileNumber }, abortController.signal)
       .then(setReservations)
-      .then(setSearched(true))
+      .then(setSearched(mobileNumber))
       .catch(setError);
 
     return () => abortController.abort();
@@ -36,15 +36,15 @@ function Search() {
   return phoneArray.join("-");
   }
   const searchResults = () => {
-    if (!searched) return null;
+    if (!searched.length) return null;
     else {
       return reservations.length > 0 ? (
         <>
-          <h2>{`Reservations for ${formatPhoneNumber(mobileNumber)}`}</h2>
+          <h2>{`Reservations for ${formatPhoneNumber(searched)}`}</h2>
           <ReservationList reservations={reservations} />
         </>
       ) : (
-        <h3>No Reservations Found</h3>
+        <h3>No reservations found</h3>
       );
     }
   };

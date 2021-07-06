@@ -4,7 +4,7 @@ import Dashboard from "../dashboard/Dashboard";
 import ReservationForm from "./Reservations/ReservationForm";
 import SeatReservation from "./Reservations/SeatReservation";
 import Search from "./Search";
-import TableForm from "./TableForm";
+import TableForm from "./Tables/TableForm";
 import NotFound from "./NotFound";
 import useQuery from "../utils/useQuery";
 import {today} from "../utils/date-time";

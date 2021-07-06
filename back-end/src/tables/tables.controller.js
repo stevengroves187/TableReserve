@@ -41,7 +41,7 @@ async function validateTable(req, res, next) {
     });
 
   res.locals.table = data;
-  res.locals.table.status = "vacant";
+  res.locals.table.status = "free";
   next();
 }
 
@@ -137,7 +137,7 @@ async function destroy(req, res) {
   const {reservation_id} = res.locals.table;
   const {table_id} = res.locals.table;
 	await service.updateReservation(reservation_id, "finished");
-  await service.updateTable(table_id, null, "vacant")
+  await service.updateTable(table_id, null, "free")
 	
   res.status(200).json({ data: "Finished"});
 }

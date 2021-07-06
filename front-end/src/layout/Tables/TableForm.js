@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import ErrorAlert from "./ErrorAlert";
-const { postTable } = require("../utils/api");
+import ErrorAlert from "../ErrorAlert";
+const { postTable } = require("../../utils/api");
 
 function TableForm() {
   const [tableFormError, setTableFormError] = useState(null);
