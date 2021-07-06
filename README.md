@@ -146,6 +146,9 @@ New Reservation Screenshot
 Edit Reservation Screenshot
 ![Alt text](./screenshots/edit_reservation_screenshot.jpg?raw=true "Edit Reservation")
 
+Seat Reservation Screenshot
+![Alt text](./screenshots/seat_reservation_screenshot.jpg?raw=true "Seat Reservation")
+
 New Table Screenshot
 ![Alt text](./screenshots/new_table_screenshot.jpg?raw=true "New Table")
 
