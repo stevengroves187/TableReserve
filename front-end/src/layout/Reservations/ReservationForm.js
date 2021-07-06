@@ -201,7 +201,7 @@ function ReservationForm({ edit }) {
             </div>
           </div>
           <div className="form-row">
-            <div className="form-group col-md-6">
+            <div className="form-group col-md-3">
               <label htmlFor="reservation_date">Reservation Date</label>
               <input
                 type="date"
@@ -215,7 +215,7 @@ function ReservationForm({ edit }) {
                 onChange={inputHandler}
               />
             </div>
-            <div className="form-group col-md-6">
+            <div className="form-group col-md-3">
               <label htmlFor="reservation_time">Reservation Time</label>
               <input
                 type="time"

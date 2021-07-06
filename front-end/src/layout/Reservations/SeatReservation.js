@@ -11,16 +11,15 @@ function SeatReservation() {
   const [tables, setTables] = useState([]);
   const [reservation, setReservation] = useState([]);
   const [errors, setErrors] = useState([]);
- 
+
   useEffect(() => {
     const abortController = new AbortController();
 
     setErrors([]);
 
     listTables(abortController.signal)
-    .then(setTables)
-    .catch((newError) => setErrors((prevState) => [...prevState,newError]));
-
+      .then(setTables)
+      .catch((newError) => setErrors((prevState) => [...prevState, newError]));
 
     return () => abortController.abort();
   }, []);
@@ -35,17 +34,15 @@ function SeatReservation() {
       .catch((newError) => setErrors((prevState) => [...prevState, newError]));
 
     listTables(abortController.signal)
-    .then(setTables)
-    .catch((newError) => setErrors((prevState) => [...prevState, newError]));
-
+      .then(setTables)
+      .catch((newError) => setErrors((prevState) => [...prevState, newError]));
 
     return () => abortController.abort();
   }, [reservation_id]);
-  
+
   function handleChange(event) {
     setTableId(event.target.value);
   }
-
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -54,11 +51,12 @@ function SeatReservation() {
     if (validateSeat()) {
       seatTable(reservation_id, table_id, abortController.signal)
         .then(() => history.push(`/dashboard`))
-        .catch((newError) => setErrors((prevState) => [...prevState, newError]));
+        .catch((newError) =>
+          setErrors((prevState) => [...prevState, newError])
+        );
     }
     return () => abortController.abort();
   }
-
 
   function validateSeat() {
     const newErrors = [];
@@ -67,14 +65,15 @@ function SeatReservation() {
       (table) => table.table_id === Number(table_id)
     );
 
-      if (foundTable.status === "occupied") {
-        newErrors.push({message: "This table is currently occupied."});
-      }
+    if (foundTable.status === "occupied") {
+      newErrors.push({ message: "This table is currently occupied." });
+    }
 
-      if (foundTable.capacity < reservation.people) {
-        newErrors.push({message:`This table cannot seat ${reservation.people} people.`});
-      }
-
+    if (foundTable.capacity < reservation.people) {
+      newErrors.push({
+        message: `This table cannot seat ${reservation.people} people.`,
+      });
+    }
 
     setErrors((prevState) => [...prevState, ...newErrors]);
 
@@ -90,33 +89,44 @@ function SeatReservation() {
     //   </option>
     // )) : <option value={null} disabled>No Available Tables</option>;
     return tables.map((table) => (
-        <option key={table.table_id} value={table.table_id}>
-          {table.table_name} - {table.capacity}
-        </option>))
-  };
+      <option key={table.table_id} value={table.table_id}>
+        {table.table_name} - {table.capacity}
+      </option>
+    ));
+  }
 
   function errorsDisplay() {
-    return errors.length > 0 ? errors.map((error, id) => <ErrorAlert key={id} error={error} />) : null;
-  };
+    return errors.length > 0
+      ? errors.map((error, id) => <ErrorAlert key={id} error={error} />)
+      : null;
+  }
 
   return (
     <form className="form-select">
-     {errorsDisplay()}  
-     <h2>Reservation ID: {reservation.reservation_id} Number of People: {reservation.people}</h2>
-      <label className="form-label" htmlFor="table_id">
-        Choose table:
-      </label>
-      <select
-        className="form-control"
-        name="table_id"
-        id="table_id"
-        value={table_id}
-        onChange={handleChange}
-      >
-        <option value={0}>Available Tables</option>
-        {tableOptions()}
-      </select>
-
+      {errorsDisplay()}
+      <h3>
+        Reservation ID: {reservation.reservation_id} &nbsp;&nbsp;&nbsp; Number
+        of People: {reservation.people}
+      </h3>
+      <div className="form-row">
+        <div className="form-group col-md-3">
+          <label className="form-label" htmlFor="table_id">
+            Choose table:
+          </label>
+          <select
+            className="form-control"
+            name="table_id"
+            id="table_id"
+            value={table_id}
+            onChange={handleChange}
+          >
+            <option value={0} disabled>
+              Choose a table:
+            </option>
+            {tableOptions()}
+          </select>
+        </div>
+      </div>
       <button
         className="btn btn-primary m-1"
         type="submit"
