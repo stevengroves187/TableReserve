@@ -137,11 +137,23 @@ If you believe your implementation is correct, but needs a bit more time to fini
 
 #### Screenshots
 
-To help you better understand what might be happening during the end-to-end tests, screenshots are taken at various points in the test.
+Dashboard Screenshot
+![Alt text](./screenshots/dashboard_screenshot.jpg?raw=true "Dashboard")
 
-The screenshots are saved in `front-end/.screenshots` and you can review them after running the end-to-end tests.
+New Reservation Screenshot
+![Alt text](./screenshots/new_reservation_screenshot.jpg?raw=true "New Reservation")
 
-You can use the screenshots to debug your code by rendering additional information on the screen.
+Edit Reservation Screenshot
+![Alt text](./screenshots/edit_reservation_screenshot.jpg?raw=true "Edit Reservation")
+
+Seat Reservation Screenshot
+![Alt text](./screenshots/seat_reservation_screenshot.jpg?raw=true "Seat Reservation")
+
+New Table Screenshot
+![Alt text](./screenshots/new_table_screenshot.jpg?raw=true "New Table")
+
+Search Screenshot
+![Alt text](./screenshots/search_screenshot.jpg?raw=true "Search")
 
 ## Product Backlog
 
