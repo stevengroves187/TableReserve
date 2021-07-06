@@ -1,5 +1,7 @@
 # Restaurant Reservation System
 
+Created using React.js, JavaScript, HTML, CSS, Express API, and Knex to PostreSQL databases.
+
 This application allows the creation of new reservations and tables in order to manage a restaurant's seating organization. Reservations can be edited, cancelled, or seated at a selected table. Tables have an option to finish the table, finishing the reservation and freeing it up for a new reservation. It also has a search feature which allows the user to search the reservations by their phone number.
 
 This repository is set up as a *monorepo*, meaning that the frontend and backend projects are in one repository. This allows you to open both projects in the same editor.
