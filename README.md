@@ -137,7 +137,20 @@ If you believe your implementation is correct, but needs a bit more time to fini
 
 #### Screenshots
 
+Dashboard Screenshot
 ![Alt text](./screenshots/dashboard_screenshot.jpg?raw=true "Dashboard")
+
+New Reservation Screenshot
+![Alt text](./screenshots/new_reservation_screenshot.jpg?raw=true "New Reservation")
+
+Edit Reservation Screenshot
+![Alt text](./screenshots/edit_reservation_screenshot.jpg?raw=true "Edit Reservation")
+
+New Table Screenshot
+![Alt text](./screenshots/new_table_screenshot.jpg?raw=true "New Table")
+
+Search Screenshot
+![Alt text](./screenshots/search_screenshot.jpg?raw=true "Search")
 
 ## Product Backlog
 
