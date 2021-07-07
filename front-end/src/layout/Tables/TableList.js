@@ -22,7 +22,7 @@ function TableList({ tables, loadDashboard }) {
   function displayTable(table) {
     return (
       <tr key={table.table_id}>
-        <td className="pt-4">{table.table_id}</td>
+        <th scope="row" className="pt-4">{table.table_id}</th>
         <td className="pt-4">{table.table_name}</td>
         <td className="pt-4">{table.capacity}</td>
         <td className="pt-4" data-table-id-status={table.table_id}>{table.status}</td>

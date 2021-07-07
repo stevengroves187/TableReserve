@@ -41,7 +41,6 @@ async function validateTable(req, res, next) {
     });
 
   res.locals.table = data;
-  res.locals.table.status = "free";
   next();
 }
 
@@ -121,6 +120,15 @@ async function list(req, res) {
 
 async function create(req, res) {
   const { table } = res.locals;
+
+	if(table.reservation_id) {
+		table.status = "occupied";
+		await service.updateReservation(req.body.data.reservation_id, "seated");
+	}
+	else {
+    	table.status = "free";
+	}
+
   const data = await service.create(table);
   res.status(201).json({ data: data });
 }
