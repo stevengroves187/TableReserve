@@ -81,18 +81,13 @@ function SeatReservation() {
   }
 
   function tableOptions() {
-    // UI Improvement that breaks tests
-    // const availableTables = tables.filter((table) => table.status === "free" && table.capacity >= reservation.people);
-    // return availableTables.length ? availableTables.map((table) => (
-    //   <option key={table.table_id} value={table.table_id}>
-    //    Table: {table.table_name} Capacity: {table.capacity}
-    //   </option>
-    // )) : <option value={null} disabled>No Available Tables</option>;
-    return tables.map((table) => (
+  
+    const availableTables = tables.filter((table) => table.status === "free" && table.capacity >= reservation.people);
+    return availableTables.length ? availableTables.map((table) => (
       <option key={table.table_id} value={table.table_id}>
-        {table.table_name} - {table.capacity}
+       Table: {table.table_name} Capacity: {table.capacity}
       </option>
-    ));
+    )) : <option value={null} disabled>No Available Tables</option>;
   }
 
   function errorsDisplay() {
@@ -121,7 +116,7 @@ function SeatReservation() {
             onChange={handleChange}
           >
             <option value={0} disabled>
-              Choose a table:
+              Available Tables
             </option>
             {tableOptions()}
           </select>

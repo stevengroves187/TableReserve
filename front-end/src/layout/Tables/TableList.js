@@ -14,10 +14,10 @@ function TableList({ tables, loadDashboard }) {
     }
   }
 
-// UI Improvement deactivated for tests
-//   function capitalizeFirstLetter(string) {
-//     return string.charAt(0).toUpperCase() + string.slice(1);
-//   }
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   function displayTable(table) {
     return (
@@ -25,7 +25,7 @@ function TableList({ tables, loadDashboard }) {
         <th scope="row" className="pt-4">{table.table_id}</th>
         <td className="pt-4">{table.table_name}</td>
         <td className="pt-4">{table.capacity}</td>
-        <td className="pt-4" data-table-id-status={table.table_id}>{table.status}</td>
+        <td className="pt-4" data-table-id-status={table.table_id}>{capitalizeFirstLetter(table.status)}</td>
         <td className="pt-4">{table.reservation_id ? table.reservation_id : "Open"}</td>
         {table.status === "occupied" && (
           <td>

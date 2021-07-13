@@ -196,6 +196,12 @@ async function read(req, res) {
   res.status(200).json({ data: reservation });
 }
 
+async function destroy(req,res){
+  const {reservation_id} = res.locals.reservation;
+  const response = await service.destroy(reservation_id);
+  if(response === 1) res.sendStatus(204);
+}
+
 module.exports = {
   list,
   read: [asyncErrorBoundary(validateReservationId), asyncErrorBoundary(read)],
@@ -210,4 +216,5 @@ module.exports = {
     asyncErrorBoundary(validReservation),
     asyncErrorBoundary(update),
   ],
+  destroy: [ asyncErrorBoundary(validateReservationId),asyncErrorBoundary(destroy),]
 };

@@ -6,7 +6,7 @@ import {
   postReservation,
   editReservation,
 } from "../../utils/api";
-import { asDateString , formatAsTime} from "../../utils/date-time";
+import { asDateString, formatAsTime } from "../../utils/date-time";
 
 function ReservationForm({ edit }) {
   const initialReservationState = {
@@ -17,17 +17,13 @@ function ReservationForm({ edit }) {
     reservation_time: "",
     people: 0,
   };
-  const [fetchError, setFetchError] = useState(null);
-  const [formErrors, setFormErrors] = useState(null);
-  const [reservationError, setReservationError] = useState(null);
+  const [errors, setErrors] = useState([]);
   const [reservation, setReservation] = useState(initialReservationState);
   const history = useHistory();
   const { reservation_id } = useParams();
 
   useEffect(() => {
-    setFetchError(null);
-    setFormErrors(null);
-    setReservationError(null);
+    setErrors([]);
     if (edit) {
       loadEdit();
     } else {
@@ -57,9 +53,9 @@ function ReservationForm({ edit }) {
         status,
       } = foundReservation;
       if (!foundReservation || status !== "booked") {
-        setReservationError({
+        setErrors((prevState) => [...prevState, {
           message: "Only booked reservations can be edited.",
-        });
+        }]);
         return;
       } else {
         const date = new Date(reservation_date);
@@ -98,17 +94,17 @@ function ReservationForm({ edit }) {
           .then(() =>
             history.push(`/dashboard?date=${reservation.reservation_date}`)
           )
-          .catch(setFetchError);
+          .catch((newError) => setErrors((prevState) => [...prevState, newError]));
       } else {
         reservation.status = "booked";
         postReservation(reservation, abortController.signal)
           .then(() =>
             history.push(`/dashboard?date=${reservation.reservation_date}`)
           )
-          .catch(setFetchError);
+          .catch((newError) => setErrors((prevState) => [...prevState, newError]));
       }
     }
-    setFormErrors(errors);
+    setErrors((prevState) => [...prevState, ...errors]);
     return () => abortController.abort();
   };
 
@@ -146,8 +142,8 @@ function ReservationForm({ edit }) {
   }
 
   function errorsDisplay() {
-    if (formErrors)
-      return formErrors.map((error, id) => (
+    if (errors.length)
+      return errors.map((error, id) => (
         <ErrorAlert key={id} error={error} />
       ));
   }
@@ -155,8 +151,6 @@ function ReservationForm({ edit }) {
     <>
       {heading()}
       {errorsDisplay()}
-      <ErrorAlert error={fetchError} />
-      <ErrorAlert error={reservationError} />
       <form onSubmit={submitHandler}>
         <fieldset>
           <div className="form-row">

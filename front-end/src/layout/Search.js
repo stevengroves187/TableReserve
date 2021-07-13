@@ -44,7 +44,7 @@ function Search() {
           <ReservationList reservations={reservations} />
         </>
       ) : (
-        <h3>No reservations found</h3>
+        <h3>No Reservations Found</h3>
       );
     }
   };

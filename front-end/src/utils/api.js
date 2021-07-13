@@ -90,6 +90,12 @@
   return await fetchJson(url, { headers, signal, method: "PUT", body }, []);
 }
 
+export async function deleteReservation(reservation_id, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation_id}`;
+
+  return await fetchJson(url, { headers, signal, method: "DELETE"}, []);
+}
+
  export async function updateReservationStatus(reservation_id, status, signal) {
   const url = `${API_BASE_URL}/reservations/${reservation_id}/status`;
 
