@@ -1,4 +1,4 @@
-# Restaurant Reservation System
+# TableReserve
 
 Created using React.js, JavaScript, HTML, CSS, Express API, and Knex to PostreSQL databases.
 
