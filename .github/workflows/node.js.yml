@@ -53,11 +53,11 @@ jobs:
 
       - run: npm run build --if-present
 
-      - name: Test frontend
-        run: npm run test:frontend
-        env:
-          DATABASE_URL_TEST: postgresql://postgres:postgres@127.0.0.1:5432
-          NODE_ENV: test
+      # - name: Test frontend
+      #   run: npm run test:frontend
+      #   env:
+      #     DATABASE_URL_TEST: postgresql://postgres:postgres@127.0.0.1:5432
+      #     NODE_ENV: test
 
       - name: Archive screenshots
         uses: actions/upload-artifact@v2
